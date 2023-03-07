@@ -2,6 +2,29 @@ import Card from './components/Card';
 import Header from './components/Header';
 import Drawer from './components/Drawer';
 
+const arr = [
+  {
+    title: "КЕДЫ VANS KYLE WALKER BLACK/SULPHUR",
+    price: 8690,
+    imageUrl: '/sneakers/j1.jpg',
+  },
+  {
+    title: "КЕДЫ VANS WAYVEE BLACK/WHITE",
+    price: 9790,
+    imageUrl: '/sneakers/j2.jpg',
+  },
+  {
+    title: "КЕДЫ RIPNDIP DARK TWISTED FANTASY HIGH TOP",
+    price: 6590,
+    imageUrl: '/sneakers/j3.jpg',
+  },
+  {
+    title: "КЕДЫ FALLEN PATRIOT VULC - PRUNE PURPLE",
+    price: 5650,
+    imageUrl: '/sneakers/j4.jpg',
+  }
+];
+
 function App() {
   return (
     <div className="wrapper clear">
@@ -21,50 +44,16 @@ function App() {
         
         <div className="d-flex">
 
-          <Card /> 
-
-          <div className="card">
-            <img width={133} height={112} src="/sneakers/j2.jpg" alt="vans 1"></img>
-            <p>КЕДЫ VANS WAYVEE BLACK/WHITE</p>
-            <div className="d-flex justify-between align-center">
-              <div className="d-flex flex-column">           
-                <span>Цена:</span>
-                <b className="priceAfter">9 800</b>
-              </div>
-              <button className="button">
-                <img width={11} height={11} src="/img/plus.svg"></img>
-              </button>
-            </div>
-          </div>
-
-          <div className="card">
-            <img width={133} height={112} src="/sneakers/j3.jpg" alt="vans 1"></img>
-            <p>КЕДЫ RIPNDIP DARK TWISTED FANTASY HIGH TOP SHOE </p>
-            <div className="d-flex justify-between align-center">
-              <div className="d-flex flex-column">           
-                <span>Цена:</span>
-                <b className="priceAfter">6 700</b>
-              </div>
-              <button className="button">
-                <img width={11} height={11} src="/img/plus.svg"></img>
-              </button>
-            </div>
-          </div>
-
-          <div className="card">
-            <img width={133} height={112} src="/sneakers/j4.jpg" alt="vans 1"></img>
-            <p>КЕДЫ FALLEN PATRIOT VULC - PRUNE PURPLE</p>
-            <div className="d-flex justify-between align-center">
-              <div className="d-flex flex-column">           
-                <span>Цена:</span>
-                <b className="priceAfter">5 650</b>
-              </div>
-              <button className="button">
-                <img width={11} height={11} src="/img/plus.svg"></img>
-              </button>
-            </div>
-          </div>
-
+          {
+            arr.map((obj) => (
+              <Card 
+                title = {obj.title}
+                price = {obj.price}
+                imageUrl = {obj.imageUrl}
+              />
+            ))
+          } 
+          
         </div>
       </div>
     </div>
