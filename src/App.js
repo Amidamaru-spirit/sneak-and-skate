@@ -1,35 +1,31 @@
 import Card from './components/Card';
 import Header from './components/Header';
 import Drawer from './components/Drawer';
+import React from 'react';
 
-const arr = [
-  {
-    title: "КЕДЫ VANS KYLE WALKER BLACK/SULPHUR",
-    price: 8690,
-    imageUrl: '/sneakers/j1.jpg',
-  },
-  {
-    title: "КЕДЫ VANS WAYVEE BLACK/WHITE",
-    price: 9790,
-    imageUrl: '/sneakers/j2.jpg',
-  },
-  {
-    title: "КЕДЫ RIPNDIP DARK TWISTED FANTASY HIGH TOP",
-    price: 6590,
-    imageUrl: '/sneakers/j3.jpg',
-  },
-  {
-    title: "КЕДЫ FALLEN PATRIOT VULC - PRUNE PURPLE",
-    price: 5650,
-    imageUrl: '/sneakers/j4.jpg',
+
+function App() {  
+  const [items, setItems] = React.useState([]);
+  const [cartItems, setCartItems] = React.useState([])
+  const [cartOpened, setCartOpened] = React.useState(false);
+
+  React.useEffect(() => {
+    fetch('https://640b56e881d8a32198e186a2.mockapi.io/items')
+      .then(res => {
+        return res.json();
+      }).then(json => {
+        setItems(json);
+      });
+  }, []);
+
+  const onAddToCart = (obj) => {
+    setCartItems((prev) => [...prev, obj]);
   }
-];
 
-function App() {
   return (
     <div className="wrapper clear">
-      <Drawer />
-      <Header />
+      {cartOpened && <Drawer items={cartItems} onCloseCart={() => setCartOpened(false)}/>}
+      <Header onClickCart={() => setCartOpened(true)}/>
       
 
       <div className="content p-40">
@@ -42,14 +38,16 @@ function App() {
         </div>
         
         
-        <div className="d-flex">
+        <div className="d-flex flex-wrap">
 
           {
-            arr.map((obj) => (
+            items.map((item) => (
               <Card 
-                title = {obj.title}
-                price = {obj.price}
-                imageUrl = {obj.imageUrl}
+                title = {item.title}
+                price = {item.price}
+                imageUrl = {item.imageUrl}
+                onPlus = {(obj) => onAddToCart(obj)}
+                onFavorite = {() => console.log('fav')}
               />
             ))
           } 
