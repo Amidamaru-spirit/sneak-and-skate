@@ -56,6 +56,16 @@ header {
   border: 1px solid #f3f3f3;
   border-radius: 10px;
   padding: 0 15px;
+  position: relative;
+
+  .clear {
+    position: absolute;
+    right: 0;  
+    top: 13px;
+    width: 14px;
+    height: 14px;
+    right: 15px;
+  }
 
   input {
     border: 0;
@@ -86,7 +96,6 @@ header {
   box-shadow: -10px 4px 24px #20202010;
   display: flex;
   flex-direction: column;
-
   padding: 30px;
 
   h2 {
@@ -110,6 +119,7 @@ header {
     margin-bottom: 40px;
     
   }
+  
 }
 
 .cartTotalBlock {
@@ -174,6 +184,35 @@ header {
     }
     
   }
+
+.cartEmpty {
+  text-align: center;
+
+  p {
+    width: 280px;
+    line-height: 24px;
+  }
+  .purpleButton {
+    width: 245px;
+    margin-top: 20px;
+
+    &:hover {
+      img {
+        transform: rotate(180deg) translateX(3px);
+      }
+    }
+
+    img {
+      position: relative;
+      top: 1px;
+      transform: rotate(180deg);
+      margin-right: 15px;
+      transition: transform 0.2s ease-in-out;
+      width: 14px;
+      height: 14px;
+    }
+  }
+}
 
 
 .cartItem {
