@@ -150,6 +150,10 @@ header {
       }
       
     }
+
+    &:disabled {
+      animation: button-loading 1s ease-in-out infinite;
+    }
     
 
     img {
@@ -174,6 +178,11 @@ header {
     color: #fff;
     cursor: pointer;
     transition: background 0.2s ease-in-out;
+
+    &:disabled {
+      background-color: #bebebe !important;
+      cursor: default;
+    }
 
     &:hover {
       background: lighten($color: #4d0170c9, $amount: 10%);
@@ -248,5 +257,19 @@ header {
     &:hover {
       opacity: 1;
     }
+  }
+}
+
+@keyframes button-loading {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+
+  100% {
+    opacity: 1;
   }
 }

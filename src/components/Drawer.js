@@ -1,4 +1,37 @@
+import Info from "./Info";
+import React from "react";
+import AppContext from "../Context";
+import axios from "axios";
+
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 function Drawer({ onCloseCart, items = [], onRemove }) {
+    const { cartItems, setCartItems } = React.useContext(AppContext);
+    const [orderId, setOrderId] = React.useState(null)
+    const [isOrderComplete, setIsOrderComplete] = React.useState(false);
+    const [isLoading, setIsLoading] = React.useState(false);
+
+    const onClickOrder = async () => {
+       try {
+        setIsLoading(true);
+        const {data} = await axios.post('https://640f562e4ed25579dc4c83f2.mockapi.io/orders', {
+            items: cartItems,
+        });
+        setOrderId(data.id);
+        setIsOrderComplete(true);
+        setCartItems([]);
+
+        for (let i = 0; i < cartItems.length; i++) {
+            const item = cartItems[i];
+            await axios.delete('https://640b56e881d8a32198e186a2.mockapi.io/cart' + item.id);
+            await delay(1000);
+        }
+
+       } catch (error) {
+        alert('Whoops, заказ не получился :с');
+       } 
+       setIsLoading(false);
+    };
     return (
         <div className="overlay">
             <div className="drawer">
@@ -7,10 +40,10 @@ function Drawer({ onCloseCart, items = [], onRemove }) {
                 </h2>
 
                 {items.length > 0 ? 
-                    <div>
+                    (<div className="d-flex flex-column flex">
                         <div className="items flex">
                             {items.map((obj) => (
-                                <div className="cartItem d-flex align-center mb-20">
+                                <div key={obj.id} className="cartItem d-flex align-center mb-20">
                                     <div 
                                         style={{ backgroundImage: `url(${obj.imageUrl})` }} 
                                         className="cartItemImg"></div>
@@ -22,7 +55,7 @@ function Drawer({ onCloseCart, items = [], onRemove }) {
                                     <img onClick={() => onRemove(obj.id)} className="removeBtn" width={20} height={20} src="/img/btn-remove.svg" alt="Remove"></img>
                                 </div>
                             ))
-                            };  
+                            }  
                             </div> 
                             <div className="cartTotalBlock">
                             <ul>
@@ -37,22 +70,21 @@ function Drawer({ onCloseCart, items = [], onRemove }) {
                                     <b> 1 200 руб.</b>
                                 </li>
                             </ul>
-                            <button className="purpleButton">
+                            <button disabled={isLoading} onClick={onClickOrder} className="purpleButton">
                                 Оформить заказ 
                                 <img src="/img/arrow.png" alt="arrow">
                                 </img>
                             </button>
                         </div>
                     </div>
-                    : <div className="cartEmpty d-flex align-center justify-center flex-column flex">
-                        <img className="mb-20" width={120} height={120} src="/img/empty-cart.png"></img>
-                        <h2>В корзине ничего :С</h2>
-                        <p className="opacity-6">Добавьте, как минимум, одну пару кед, тогда можно сделать заказ С:</p>
-                        <button onClick={onCloseCart} className="purpleButton">
-                            <img src="/img/arrow.png"></img>
-                            Камбэк
-                        </button>
-                    </div>
+                    ) : (
+                            <Info 
+                                title={isOrderComplete ? `Ву-ху! Заказ №${orderId} оформлен!` : "Ничего нет :С" }
+                                description={isOrderComplete ? "Ваши кеды упокавовываются и скоро будут у вас ^-^" : "Добавить бы сюда пару кед... :3"} 
+                                image={isOrderComplete ? "/img/complete.png" : "/img/empty-cart.png"}
+                            />
+                        )
+                    
                 }
 
                 

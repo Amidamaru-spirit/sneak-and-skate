@@ -1,13 +1,25 @@
 import styles from './Card.module.scss';
 import React from 'react';
+import ContentLoader from 'react-content-loader';
 
-function Card({ id, onFavorite, title, imageUrl, price, onPlus, favorited=false }) {
-  const [isAdded, setIsAdded] = React.useState(false);
+import AppContext from '../../Context';
+
+
+function Card({ 
+  id, 
+  onFavorite, 
+  title, 
+  imageUrl, 
+  price, 
+  onPlus, 
+  favorited = false, 
+  loading = false 
+}) {
   const [isFavorite, setIsFavorite] = React.useState(favorited);
+  const { isItemAdded } = React.useContext(AppContext); 
 
   const onClickPlus = () => {
-    onPlus({ title, imageUrl, price });
-    setIsAdded(!isAdded);
+    onPlus({ id, title, imageUrl, price });
   }
 
   const onClickFavorite = () => {
@@ -19,6 +31,21 @@ function Card({ id, onFavorite, title, imageUrl, price, onPlus, favorited=false 
 
     return (
         <div className={styles.card}>
+          {
+            loading ?  <ContentLoader 
+              speed={2}
+              width={165}
+              height={250}
+              viewBox="0 0 160 260"
+              backgroundColor="#f4e0ff"
+              foregroundColor="#f1f5e1"
+            >
+            <rect x="0" y="0" rx="20" ry="20" width="150" height="155" /> 
+            <rect x="0" y="165" rx="5" ry="5" width="150" height="15" /> 
+            <rect x="0" y="185" rx="5" ry="5" width="100" height="15" /> 
+            <rect x="0" y="230" rx="5" ry="5" width="80" height="24" /> 
+            <rect x="124" y="225" rx="100" ry="100" width="32" height="32" />
+          </ContentLoader> : <>
             <div className={styles.favorite} onClick={onClickFavorite}>
               <img 
                 width={18} 
@@ -28,7 +55,7 @@ function Card({ id, onFavorite, title, imageUrl, price, onPlus, favorited=false 
               ></img>
             </div>
 
-            <img width={133} height={112} src={imageUrl} alt="sneake"></img>
+            <img width={150} height={155} src={imageUrl} alt="sneake"></img>
             <h5>{title}</h5>
             <div className="d-flex justify-between align-center">
               <div className="d-flex flex-column">           
@@ -36,15 +63,18 @@ function Card({ id, onFavorite, title, imageUrl, price, onPlus, favorited=false 
                 <b className="priceAfter">{price}</b>
               </div>
               
-                <img 
-                  className={styles.plus} 
-                  onClick={onClickPlus} 
-                  width={17} 
-                  height={17} 
-                  src={isAdded ? "/img/btn-check.svg" : "/img/btn-plus.svg"}
-                ></img>
+              <img 
+                className={styles.plus} 
+                onClick={onClickPlus} 
+                width={17} 
+                height={17} 
+                src={isItemAdded(id) ? "/img/btn-check.svg" : "/img/btn-plus.svg"}
+              ></img>
               
             </div>
+          </>
+          }
+            
           </div>
     )
 }
