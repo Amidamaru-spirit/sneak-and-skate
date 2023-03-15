@@ -1,20 +1,24 @@
-import Info from "./Info";
 import React from "react";
-import AppContext from "../Context";
 import axios from "axios";
+
+import styles from "./Drawer.module.scss";
+
+import Info from "../Info";
+import { useCart } from "../../hooks/useCart";
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-function Drawer({ onCloseCart, items = [], onRemove }) {
-    const { cartItems, setCartItems } = React.useContext(AppContext);
+function Drawer({ onCloseCart, items = [], onRemove, opened }) {
+    const { cartItems, setCartItems, totalPrice } = useCart();
     const [orderId, setOrderId] = React.useState(null)
     const [isOrderComplete, setIsOrderComplete] = React.useState(false);
     const [isLoading, setIsLoading] = React.useState(false);
+    
 
     const onClickOrder = async () => {
        try {
         setIsLoading(true);
-        const {data} = await axios.post('https://640f562e4ed25579dc4c83f2.mockapi.io/orders', {
+        const { data } = await axios.post('https://640f562e4ed25579dc4c83f2.mockapi.io/orders', {
             items: cartItems,
         });
         setOrderId(data.id);
@@ -23,18 +27,19 @@ function Drawer({ onCloseCart, items = [], onRemove }) {
 
         for (let i = 0; i < cartItems.length; i++) {
             const item = cartItems[i];
-            await axios.delete('https://640b56e881d8a32198e186a2.mockapi.io/cart' + item.id);
+            await axios.delete('https://640b56e881d8a32198e186a2.mockapi.io/cart/' + item.id);
             await delay(1000);
         }
 
        } catch (error) {
         alert('Whoops, заказ не получился :с');
+        console.error(error);
        } 
        setIsLoading(false);
     };
     return (
-        <div className="overlay">
-            <div className="drawer">
+        <div className={`${styles.overlay} ${opened ? styles.overlayVisible : ''}`}>
+            <div className={styles.drawer}>
                 <h2 className="d-flex justify-between mb-30">Корзина
                     <img onClick={onCloseCart} className="removeBtn cu-p" width={20} height={20} src="/img/btn-remove.svg" alt="Remove"></img>
                 </h2>
@@ -62,12 +67,12 @@ function Drawer({ onCloseCart, items = [], onRemove }) {
                                 <li>
                                     <span>Итого:</span>
                                     <div></div>
-                                    <b> 14 600 руб.</b>
+                                    <b> {totalPrice} руб.</b>
                                 </li>
                                 <li>
-                                    <span>Налог 5%:</span>
+                                    <span>НДС 10%:</span>
                                     <div></div>
-                                    <b> 1 200 руб.</b>
+                                    <b> {Math.round(totalPrice / 100 * 10)} руб.</b>
                                 </li>
                             </ul>
                             <button disabled={isLoading} onClick={onClickOrder} className="purpleButton">

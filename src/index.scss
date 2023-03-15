@@ -77,51 +77,6 @@ header {
 
 }
 
-.overlay {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #2020208e;
-  z-index: 9;
-}
-
-.drawer {
-  position: absolute;
-  width: 420px;
-  height: 100%;
-  right: 0;
-  background: #fcf9f9;
-  box-shadow: -10px 4px 24px #20202010;
-  display: flex;
-  flex-direction: column;
-  padding: 30px;
-
-  h2 {
-    margin: 0;
-    font-size: 24px;
-
-    .removeBtn {
-      opacity: 0.8;
-      transition: opacity 0.2s ease-in-out;
-      cursor: pointer;
-  
-      &:hover {
-        opacity: 1;
-      }
-    }
-  }
-
-  .items {
-    flex: 1;
-    overflow: auto;
-    margin-bottom: 40px;
-    
-  }
-  
-}
-
 .cartTotalBlock {
   ul {
     display: block;
