@@ -58,3 +58,65 @@
   
 }
 
+@media (max-width: 415px) {
+  .overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #2020208e;
+    z-index: 9;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.1s ease-in-out, visibility 0.1s ease-in-out;
+    overflow: hidden;
+  }
+  
+  .overlayVisible {
+    visibility: visible;
+    opacity: 1;
+    // overflow: hidden;
+    position: fixed;
+  
+    .drawer{
+      transform: translateX(0);
+    }
+  }
+  .drawer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    right: 0;
+    background: #fcf9f9;
+    box-shadow: -10px 4px 24px #20202010;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+  
+    h2 {
+      margin: 0;
+      font-size: 24px;
+  
+      .removeBtn {
+        opacity: 0.8;
+        transition: opacity 0.2s ease-in-out;
+        cursor: pointer;
+    
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  
+    .items {
+      flex: 1;
+      overflow: auto;
+      margin-bottom: 40px;
+      
+    }
+    
+  }
+}
