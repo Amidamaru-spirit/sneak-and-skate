@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/sneak-and-skate/static/css/main.263598a1.css",
-    "main.js": "/sneak-and-skate/static/js/main.58116a2d.js",
+    "main.js": "/sneak-and-skate/static/js/main.f78c504f.js",
     "index.html": "/sneak-and-skate/index.html",
     "main.263598a1.css.map": "/sneak-and-skate/static/css/main.263598a1.css.map",
-    "main.58116a2d.js.map": "/sneak-and-skate/static/js/main.58116a2d.js.map"
+    "main.f78c504f.js.map": "/sneak-and-skate/static/js/main.f78c504f.js.map"
   },
   "entrypoints": [
     "static/css/main.263598a1.css",
-    "static/js/main.58116a2d.js"
+    "static/js/main.f78c504f.js"
   ]
 }
