@@ -52,7 +52,7 @@ function Card({
                 <img 
                   width={18} 
                   height={18} 
-                  src={isFavorite ? "/img/likefill.svg" : "/img/likeempty.svg"} 
+                  src={isFavorite ? "img/likefill.svg" : "img/likeempty.svg"} 
                   alt="unliked"
                 ></img>
               </div>
@@ -72,7 +72,7 @@ function Card({
                   onClick={onClickPlus} 
                   width={17} 
                   height={17} 
-                  src={isItemAdded(id) ? "/img/btn-check.svg" : "/img/btn-plus.svg"}
+                  src={isItemAdded(id) ? "img/btn-check.svg" : "img/btn-plus.svg"}
                 ></img>
               }
               

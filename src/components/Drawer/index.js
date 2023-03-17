@@ -41,7 +41,7 @@ function Drawer({ onCloseCart, items = [], onRemove, opened }) {
         <div className={`${styles.overlay} ${opened ? styles.overlayVisible : ''}`}>
             <div className={styles.drawer}>
                 <h2 className="d-flex justify-between mb-30">Корзина
-                    <img onClick={onCloseCart} className="removeBtn cu-p" width={20} height={20} src="/img/btn-remove.svg" alt="Remove"></img>
+                    <img onClick={onCloseCart} className="removeBtn cu-p" width={20} height={20} src="img/btn-remove.svg" alt="Remove"></img>
                 </h2>
 
                 {items.length > 0 ? 
@@ -57,7 +57,7 @@ function Drawer({ onCloseCart, items = [], onRemove, opened }) {
                                         <p className="mb-5">{obj.title}</p>
                                         <b>{obj.price} руб.</b>              
                                     </div>
-                                    <img onClick={() => onRemove(obj.id)} className="removeBtn" width={20} height={20} src="/img/btn-remove.svg" alt="Remove"></img>
+                                    <img onClick={() => onRemove(obj.id)} className="removeBtn" width={20} height={20} src="img/btn-remove.svg" alt="Remove"></img>
                                 </div>
                             ))
                             }  
@@ -77,7 +77,7 @@ function Drawer({ onCloseCart, items = [], onRemove, opened }) {
                             </ul>
                             <button disabled={isLoading} onClick={onClickOrder} className="purpleButton">
                                 Оформить заказ 
-                                <img src="/img/arrow.png" alt="arrow">
+                                <img src="img/arrow.png" alt="arrow">
                                 </img>
                             </button>
                         </div>
@@ -86,7 +86,7 @@ function Drawer({ onCloseCart, items = [], onRemove, opened }) {
                             <Info 
                                 title={isOrderComplete ? `Ву-ху! Заказ №${orderId} оформлен!` : "Ничего нет :С" }
                                 description={isOrderComplete ? "Ваши кеды упокавовываются и скоро будут у вас ^-^" : "Добавить бы сюда пару кед... :3"} 
-                                image={isOrderComplete ? "/img/complete.png" : "/img/empty-cart.png"}
+                                image={isOrderComplete ? "img/complete.png" : "img/empty-cart.png"}
                             />
                         )
                     
