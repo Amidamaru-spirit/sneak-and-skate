@@ -7,7 +7,7 @@ function Favorites() {
 
   return (
     <div className="content">
-      <div className="d-flex align-center mb-40 justify-between">
+      <div className="d-flex align-center mb-40 mt-20 justify-between">
         <h1>My...Precious</h1> 
       </div>
     

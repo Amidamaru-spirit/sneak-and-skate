@@ -33,19 +33,19 @@ function Card({
     return (
         <div className={styles.card}>
           {
-            loading ?  <ContentLoader 
-              speed={2}
-              width={165}
-              height={250}
-              viewBox="0 0 160 260"
-              backgroundColor="#f4e0ff"
-              foregroundColor="#f1f5e1"
-            >
-            <rect x="0" y="0" rx="20" ry="20" width="150" height="155" /> 
-            <rect x="0" y="165" rx="5" ry="5" width="150" height="15" /> 
-            <rect x="0" y="185" rx="5" ry="5" width="100" height="15" /> 
-            <rect x="0" y="230" rx="5" ry="5" width="80" height="24" /> 
-            <rect x="124" y="225" rx="100" ry="100" width="32" height="32" />
+            loading ? <ContentLoader 
+            speed={5}
+            width= "100%"
+            height= "100%"
+            viewBox="0 0 220 420"
+            backgroundColor="#eac2ff"
+            foregroundColor="#edfbb7"
+          >
+            <rect x="0" y="10" rx="20" ry="20" width="100%" height="45%" /> 
+            <rect x="0" y="236" rx="5" ry="5" width="100%" height="5%" /> 
+            <rect x="0" y="264" rx="5" ry="5" width="50%" height="5%" /> 
+            <rect x="0" y="350" rx="5" ry="5" width="45%" height="10%" /> 
+            <rect x="177" y="357" rx="100" ry="100" width="13%" height="7%" />
           </ContentLoader> : <>
             {onFavorite && 
               <div className={styles.favorite} onClick={onClickFavorite}>
@@ -72,9 +72,9 @@ function Card({
                   <img 
                     className={styles.plus} 
                     onClick={onClickPlus} 
-                    width={23} 
-                    height={23} 
-                    src={isItemAdded(id) ? "img/btn-check.svg" : "img/btn-plus.svg"}
+                    width={30} 
+                    height={30} 
+                    src={isItemAdded(id) ? "img/btn-check.png" : "img/btn-plus.png"}
                     ></img>
               }
               
