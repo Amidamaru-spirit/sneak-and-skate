@@ -45,7 +45,7 @@ function Card({
             <rect x="0" y="236" rx="5" ry="5" width="100%" height="5%" /> 
             <rect x="0" y="264" rx="5" ry="5" width="50%" height="5%" /> 
             <rect x="0" y="350" rx="5" ry="5" width="45%" height="10%" /> 
-            <rect x="177" y="357" rx="100" ry="100" width="13%" height="7%" />
+            <rect x="187" y="353" rx="5" ry="5" width="15%" height="8%" />
           </ContentLoader> : <>
             {onFavorite && 
               <div className={styles.favorite} onClick={onClickFavorite}>
@@ -72,8 +72,8 @@ function Card({
                   <img 
                     className={styles.plus} 
                     onClick={onClickPlus} 
-                    width={30} 
-                    height={30} 
+                    width={32} 
+                    height={32} 
                     src={isItemAdded(id) ? "img/btn-check.png" : "img/btn-plus.png"}
                     ></img>
               }

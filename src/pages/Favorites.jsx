@@ -12,7 +12,7 @@ function Favorites() {
       </div>
     
     
-      <div className="d-flex flex-wrap">
+      <div className="content__items d-flex flex-wrap">
 
       {favorites.map((item) => (
           <Card 

@@ -3,7 +3,7 @@ body {
   font-family: 'Sofia Sans Semi Condensed', system-ui;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f7f5fa;
+  background-color: #dfdfdf;
 }
 
 * {
@@ -12,18 +12,21 @@ body {
 }
 
 .wrapper {
-  background: #ffffff;
-  box-shadow: 0px 0px 20px #5a2b5a71;
+  box-shadow: 0px 0px 50px #ff7bff81;
   border-radius: 25px;
   max-width: 73%;
   min-width: 720px;
   margin: 50px auto;
+  background: #ffffff;
 }
 
 header {
-  border-bottom: 1px solid #ececec;
+  border-bottom: 1px solid #eac3fa;
   padding: 40px;
+  background-color: #ffffff;
+  top: 0;
 
+  border-radius: 25px 25px 0 0 ;
   img{
     margin-right: 15px;
   }
@@ -31,6 +34,7 @@ header {
   h3, p {
     margin: 0;
     font-size: 20px;
+    color: #551345;
   }
 
   span {
@@ -46,6 +50,7 @@ header {
   h1 {
     margin: 0;
     font-size: 40px;
+    color: #46143a;
   }
   padding: 40px;
 }
@@ -54,6 +59,9 @@ header {
   font-size: 15px;
 }
 
+.content__items {
+  justify-content: space-evenly;
+}
 
 
 // .button {
@@ -431,8 +439,10 @@ header {
       font-size: 40px;
     }
     padding: 10px;
-    width: 100%;
+    width: 100%; 
   }
+
+
   .priceAfter:after {
     content: ' \20BD';
     font-size: 15px;

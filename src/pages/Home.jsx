@@ -44,7 +44,7 @@ function Home(
       </div>
     
     
-      <div className="d-flex flex-wrap">{renderItems()}</div>
+      <div className="content__items d-flex flex-wrap">{renderItems()}</div>
   </div>
   )
 }
